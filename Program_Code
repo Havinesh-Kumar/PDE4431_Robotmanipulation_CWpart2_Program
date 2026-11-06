@@ -1,0 +1,204 @@
+'Defines the main function of the program'
+Function main
+
+'Turns on the robot motors'
+Motor On
+
+'Calls the function to pick up an object'
+Call pick1
+
+'Calls the function to place the object at drop position 1'
+Call drop1
+
+'Calls the function to pick up an object'
+Call pick1
+
+'Calls the function to place the object at drop position 2'
+Call drop2
+
+'Calls the function to pick up an object'
+Call pick1
+
+'Calls the function to place the object at drop position 3'
+Call drop3
+
+'Turns off the robot motors'
+Motor Off
+
+'Ends the main function'
+Fend
+
+
+'Defines the function to turn on the gripper'
+Function gripperon
+
+'Activates output 11 to close the gripper and grip the object'
+On 11
+
+'Ends the gripper-on function'
+Fend
+
+
+'Defines the function to turn off the gripper'
+Function gripperoff
+
+'Deactivates output 11 to open the gripper and release the object'
+Off 11
+
+'Ends the gripper-off function'
+Fend
+
+
+'Defines the function to pick up an object from the pickup position'
+Function pick1
+
+'Moves the robot to the home reference position'
+Go home_ref
+
+'Opens the gripper before approaching the object'
+Call gripperoff
+
+'Waits for 1 second'
+Wait 1
+
+'Sets the robot movement speed to 70%'
+Speed 70
+
+'Moves the robot to the pickup approach position'
+Go pick_apprch1
+
+'Reduces the robot movement speed to 30%'
+Speed 30
+
+'Moves the robot to the actual pickup position'
+Move pick_pt1
+
+'Waits for 1 second to ensure the robot reaches the pickup position'
+Wait 1
+
+'Closes the gripper to grip the object'
+Call gripperon
+
+'Waits for 2 seconds to ensure the object is securely gripped'
+Wait 2
+
+'Sets the robot movement speed to 30%'
+Speed 30
+
+'Moves the robot 15 mm upward along the Z-axis using a point offset with respect to the world frame'
+Move pick_pt1 +Z(15)
+
+'Ends the pickup function'
+Fend
+
+
+'Defines the function to place the object at drop position 1'
+Function drop1
+
+'Sets the robot movement speed to 70%'
+Speed 70
+
+'Moves the robot to the first drop approach position'
+Go drop_apprch1
+
+'Reduces the robot movement speed to 30%'
+Speed 30
+
+'Moves the robot to the first drop position'
+Move drop_pt1
+
+'Waits for 1 second to ensure the robot reaches the drop position'
+Wait 1
+
+'Opens the gripper to release the object'
+Call gripperoff
+
+'Waits for 2 seconds to ensure the object is released'
+Wait 2
+
+'Sets the robot movement speed to 30%'
+Speed 30
+
+'Moves the robot 15 mm upward along the Z-axis using a point offset with respect to the world frame'
+BMove XY(0, 0, 15, 0, 0, 0)
+
+
+'Ends the first drop function'
+Fend
+
+
+'Defines the function to place the object at drop position 2'
+Function drop2
+
+'Sets the robot movement speed to 70%'
+Speed 70
+
+'Moves the robot to the second drop approach position'
+Go drop_apprch2
+
+'Reduces the robot movement speed to 30%'
+Speed 30
+
+'Moves the robot to the second drop position'
+Move drop_pt2
+
+'Waits for 1 second to ensure the robot reaches the drop position'
+Wait 1
+
+'Opens the gripper to release the object'
+Call gripperoff
+
+'Waits for 2 seconds to ensure the object is released'
+Wait 2
+
+'Sets the robot movement speed to 30%'
+Speed 30
+
+'Performs a 15 mm positive Z-axis offset with respect to the tool frame using TMove'
+TMove XY(0, 0, 15, 0, 0, 0) 'Tmove Here +Z(15)' "Move drop_pt2 - TLZ (50)"
+
+
+'Ends the second drop function'
+Fend
+
+
+'Defines the function to place the object at drop position 3'
+Function drop3
+
+'Sets the robot movement speed to 70%'
+Speed 70
+
+'Moves the robot to the third drop approach position'
+Go drop_apprch3
+
+'Reduces the robot movement speed to 30%'
+Speed 30
+
+'Moves the robot to the third drop position'
+Move drop_pt3
+
+'Waits for 1 second to ensure the robot reaches the drop position'
+Wait 1
+
+'Opens the gripper to release the object'
+Call gripperoff
+
+'Waits for 2 seconds to ensure the object is released'
+Wait 2
+
+'Sets the robot movement speed to 30%'
+Speed 30
+
+'Moves the robot 15 mm upward along the Z-axis using a point offset with respect to the world frame'
+Move drop_pt3 +Z(15)
+
+'Sets the robot movement speed to 70%'
+Speed 70
+
+
+'Moves the robot back to the home reference position'
+Go home_ref
+
+
+'Ends the third drop function'
+Fend
